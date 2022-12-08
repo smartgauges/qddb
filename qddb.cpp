@@ -71,10 +71,15 @@ QImage qddb_t::load(const QString & fileName)
 
 				//ARGB1555
 				quint16 a = (pixel & 0x8000) ? 255 : 0;
-				quint16 r = (pixel >> 10) & 0x1ff;
-				quint16 g = (pixel >> 5) & 0x1ff;
-				quint16 b = pixel & 0x1ff;
-				result.setPixel(x, y, qRgba(r * 8, g * 8, b * 8, a));
+				quint16 r = (pixel >> 10) & 0x1f;
+				quint16 g = (pixel >> 5) & 0x1f;
+				quint16 b = pixel & 0x1f;
+
+				r = (r == 0x1f) ? 255 : r * 8;
+				g = (g == 0x1f) ? 255 : g * 8;
+				b = (b == 0x1f) ? 255 : b * 8;
+
+				result.setPixel(x, y, qRgba(r, g, b, a));
 			}
 		}
 
@@ -131,10 +136,15 @@ QImage qddb_t::load(const QString & fileName)
 
 				//ARGB1555
 				quint16 a = (pixel & 0x8000) ? 255 : 0;
-				quint16 r = (pixel >> 10) & 0x1ff;
-				quint16 g = (pixel >> 5) & 0x1ff;
-				quint16 b = pixel & 0x1ff;
-				result.setPixel(x, y, qRgba(r * 8, g * 8, b * 8, a));
+				quint16 r = (pixel >> 10) & 0x1f;
+				quint16 g = (pixel >> 5) & 0x1f;
+				quint16 b = pixel & 0x1f;
+
+				r = (r == 0x1f) ? 255 : r * 8;
+				g = (g == 0x1f) ? 255 : g * 8;
+				b = (b == 0x1f) ? 255 : b * 8;
+
+				result.setPixel(x, y, qRgba(r, g, b, a));
 			}
 		}
 
